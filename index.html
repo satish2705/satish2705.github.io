@@ -8,9 +8,26 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
+            margin: 0;
             padding: 20px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.25));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: #333;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         a {
             color: #0366d6;
@@ -21,15 +38,44 @@
         }
         h1 {
             color: #333;
+            text-align: center;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
-    <h1><marquee>My GitHub Repositories</marquee></h1>
-    <ul>
-        <!-- Add your repositories here -->
-        <li><a href="https://github.com/satish2705/renpy-game" target="_blank">renpy-game</a></li>
-        <li><a href="https://github.com/satish2705/PaymentAPI" target="_blank">PaymentAPI</a></li>
-    </ul>
+    <div class="container">
+        <h1>My GitHub Repositories</h1>
+        <ul id="repo-list">
+            <!-- Repositories will be dynamically added here -->
+        </ul>
+    </div>
+    <script>
+        async function fetchRepositories() {
+            const username = "satish2705"; // Your GitHub username
+            const repoList = document.getElementById('repo-list');
+            try {
+                const response = await fetch(`https://api.github.com/users/${username}/repos`);
+                const repos = await response.json();
+                repos.forEach(repo => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `<a href="${repo.html_url}" target="_blank">${repo.name}</a>`;
+                    repoList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error('Error fetching repositories:', error);
+                repoList.innerHTML = '<li>Failed to load repositories.</li>';
+            }
+        }
+
+        // Fetch and display repositories on page load
+        fetchRepositories();
+    </script>
 </body>
 </html>
