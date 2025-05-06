@@ -65,7 +65,7 @@
                 const repos = await response.json();
                 repos.forEach(repo => {
                     const listItem = document.createElement('li');
-                    listItem.innerHTML = `<p> repo type: ${repo.user_view_type}</p><a href="${repo.html_url}" target="_blank">${repo.name}</a>`;
+                    listItem.innerHTML = `<p> repo type: ${repo.owner.user_view_type}</p><a href="${repo.html_url}" target="_blank">${repo.name}</a>`;
                     repoList.appendChild(listItem);
                 });
             } catch (error) {
