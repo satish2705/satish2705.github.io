@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="A list of my GitHub repositories with descriptions.">
+    <meta name="keywords" content="GitHub, repositories, projects, portfolio">
+    <meta name="author" content="Satish">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My GitHub Repositories</title>
     <style>
@@ -60,6 +63,15 @@
         .repo p {
             margin: 5px 0 0;
         }
+        @media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        max-width: 100%;
+        padding: 10px;
+    }
+}
     </style>
 </head>
 <body>
@@ -81,18 +93,22 @@
                     listItem.classList.add('repo');
                     listItem.innerHTML = `
                         <h2><a href="${repo.html_url}" target="_blank">${repo.name}</a></h2>
-                        <p>${repo.description || "No description available."}</p>
+                        <p>${repo.description ? repo.description.replace(/</g, "&lt;").replace(/>/g, "&gt;") : "No description available."}</p>
+                        <p>⭐ Stars: ${repo.stargazers_count} | 🍴 Forks: ${repo.forks_count}</p>
                     `;
                     repoList.appendChild(listItem);
                 });
             } catch (error) {
                 console.error('Error fetching repositories:', error);
-                repoList.innerHTML = '<li>Failed to load repositories.</li>';
+                repoList.innerHTML = '<li>Unable to fetch repositories. Please try again later.</li>';
             }
         }
 
         // Fetch and display repositories on page load
         fetchRepositories();
     </script>
+    <noscript>
+    <p>JavaScript is required to display the repositories. Please enable it in your browser settings.</p>
+    </noscript>    
 </body>
 </html>
