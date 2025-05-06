@@ -41,11 +41,24 @@
             text-align: center;
         }
         ul {
-            list-style: numbered;
+            list-style: none;
             padding: 0;
         }
         li {
             margin: 10px 0;
+        }
+        .repo {
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .repo h2 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .repo p {
+            margin: 5px 0 0;
         }
     </style>
 </head>
@@ -65,7 +78,11 @@
                 const repos = await response.json();
                 repos.forEach(repo => {
                     const listItem = document.createElement('li');
-                    listItem.innerHTML = `<p> repo type: ${repo.owner.user_view_type}<a href="${repo.html_url}" target="_blank">${repo.name}</a></p>`;
+                    listItem.classList.add('repo');
+                    listItem.innerHTML = `
+                        <h2><a href="${repo.html_url}" target="_blank">${repo.name}</a></h2>
+                        <p>${repo.description || "No description available."}</p>
+                    `;
                     repoList.appendChild(listItem);
                 });
             } catch (error) {
