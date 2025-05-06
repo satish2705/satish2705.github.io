@@ -1,1 +1,1 @@
-just go to # satish2705.github.io
+just go to satish2705.github.io
