@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Satish's Profile Page">
+    <meta name="keywords" content="Profile, Satish, GitHub, Portfolio">
+    <meta name="author" content="Satish">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satish's Profile</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #e0eafc, #cfdef3);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .profile-container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+            padding: 32px 24px;
+            text-align: center;
+        }
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #e0eafc;
+            margin-bottom: 18px;
+        }
+        h1 {
+            margin: 0 0 8px 0;
+            font-size: 2em;
+            color: #1d3557;
+        }
+        .bio {
+            font-size: 1.1em;
+            margin-bottom: 18px;
+            color: #555;
+        }
+        .profile-links {
+            margin: 18px 0;
+        }
+        .profile-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #457b9d;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .profile-links a:hover {
+            color: #1d3557;
+            text-decoration: underline;
+        }
+        .skills {
+            margin: 20px 0 0 0;
+            padding: 0;
+            list-style: none;
+        }
+        .skills li {
+            display: inline-block;
+            background: #f1faee;
+            color: #457b9d;
+            border-radius: 12px;
+            padding: 6px 14px;
+            margin: 4px 4px;
+            font-size: 0.95em;
+        }
+        @media (max-width: 600px) {
+            .profile-container {
+                padding: 18px 6px;
+            }
+            .avatar {
+                width: 90px;
+                height: 90px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <img class="avatar" src="https://avatars.githubusercontent.com/u/your-github-id?v=4" alt="Satish's Avatar">
+        <h1>Satish</h1>
+        <div class="bio">
+            Passionate developer and technology enthusiast.<br>
+            Building projects, learning new things, and sharing knowledge.
+        </div>
+        <div class="profile-links">
+            <a href="https://github.com/satish2705" target="_blank">GitHub</a>
+            <a href="mailto:satish@example.com">Email</a>
+            <a href="index.html">My Projects</a>
+        </div>
+        <h2>Skills</h2>
+        <ul class="skills">
+            <li>JavaScript</li>
+            <li>HTML5 &amp; CSS3</li>
+            <li>Python</li>
+            <li>React</li>
+            <li>Node.js</li>
+            <li>Git</li>
+        </ul>
+    </div>
+</body>
+</html>
