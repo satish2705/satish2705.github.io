@@ -80,6 +80,76 @@
                 height: 90px;
             }
         }
+        
+        .container {
+            max-width: 80%;
+            width: 800px;
+            background: rgba(255, 255, 255, 0.9);
+            /* Subtle white background */
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            /* Softer shadow */
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            /* Light border */
+        }
+
+        a {
+            color: #1d72b8;
+            /* Subtle blue for links */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            color: #3a3a3a;
+            /* Darker gray for headings */
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        .repo {
+            margin-bottom: 15px;
+            background: rgba(240, 244, 248, 0.9);
+            /* Light subtle background for repo items */
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .repo h2 {
+            margin: 0;
+            font-size: 1.2em;
+            color: #2c3e50;
+            /* Subtle dark color for repo titles */
+        }
+
+        .repo p {
+            margin: 5px 0 0;
+            color: #4a4a4a;
+            /* Subtle dark gray for descriptions */
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 10px;
+            }
+        }
     </style>
 </head>
 <body>
