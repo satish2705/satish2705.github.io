@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="A list of my GitHub repositories with descriptions.">
+    <meta name="keywords" content="GitHub, repositories, projects, portfolio">
+    <meta name="author" content="Satish">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My GitHub Repositories</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+            /* Light subtle gradient */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: #4a4a4a;
+            /* Subtle dark gray for text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 80%;
+            width: 800px;
+            background: rgba(255, 255, 255, 0.9);
+            /* Subtle white background */
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            /* Softer shadow */
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            /* Light border */
+        }
+
+        a {
+            color: #1d72b8;
+            /* Subtle blue for links */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            color: #3a3a3a;
+            /* Darker gray for headings */
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        .repo {
+            margin-bottom: 15px;
+            background: rgba(240, 244, 248, 0.9);
+            /* Light subtle background for repo items */
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .repo h2 {
+            margin: 0;
+            font-size: 1.2em;
+            color: #2c3e50;
+            /* Subtle dark color for repo titles */
+        }
+
+        .repo p {
+            margin: 5px 0 0;
+            color: #4a4a4a;
+            /* Subtle dark gray for descriptions */
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>My GitHub Repositories</h1>
+        <ul id="repo-list">
+            <!-- Repositories will be dynamically added here -->
+        </ul>
+        <ul>
+            <li class="repo">
+                <h2><a href="profile.html" target="_blank">Profile</a></h2>
+            </li>
+            <li class="repo">
+                <h2><a href="studytracker.html" target="_blank">studytracker</a></h2>
+            </li>
+            <li class="repo">
+                <h2><a href="logoanimation.html" target="_blank">logoanimation</a></h2>
+            </li>
+            <li class="repo">
+                <h2><a href="slider.html" target="_blank">slider</a></h2>
+            </li>
+        </ul>
+    </div>
+    <script>
+        async function fetchRepositories() {
+            const username = "satish2705"; // Your GitHub username
+            const repoList = document.getElementById('repo-list');
+            try {
+                const response = await fetch(`https://api.github.com/users/${username}/repos`);
+                const repos = await response.json();
+                repos.forEach(repo => {
+                    const listItem = document.createElement('li');
+                    listItem.classList.add('repo');
+                    listItem.innerHTML = `
+                        <h2><a href="${repo.html_url}" target="_blank">${repo.name}</a></h2>
+                        <p>${repo.description ? repo.description.replace(/</g, "&lt;").replace(/>/g, "&gt;") : "No description available."}</p>
+                        <p>⭐ Stars: ${repo.stargazers_count} | 🍴 Forks: ${repo.forks_count}</p>
+                    `;
+                    repoList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error('Error fetching repositories:', error);
+                repoList.innerHTML = '<li>Unable to fetch repositories. Please try again later.</li>';
+            }
+        }
+
+        // Fetch and display repositories on page load
+        fetchRepositories();
+    </script>
+    <noscript>
+        <p>JavaScript is required to display the repositories. Please enable it in your browser settings.</p>
+    </noscript>
+</body>
+
+</html>
