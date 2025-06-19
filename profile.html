@@ -92,8 +92,8 @@
         </div>
         <div class="profile-links">
             <a href="https://github.com/satish2705" target="_blank">GitHub</a>
-            <a href="mailto:satish@example.com">Email</a>
-            <a href="index.html">My Projects</a>
+            <a href="mailto:sahi.holly@gmail.com">Email</a>
+            <a href="#gitprojects">My Projects</a>
         </div>
         <h2>Skills</h2>
         <ul class="skills">
@@ -104,6 +104,40 @@
             <li>Node.js</li>
             <li>Git</li>
         </ul>
+
+        <h1 id="gitprojects">My Projects</h1>
+        <ul id="repo-list">
+            <!-- Repositories will be dynamically added here -->
+        </ul>
     </div>
+    <script>
+        async function fetchRepositories() {
+            const username = "satish2705"; // Your GitHub username
+            const repoList = document.getElementById('repo-list');
+            try {
+                const response = await fetch(`https://api.github.com/users/${username}/repos`);
+                const repos = await response.json();
+                repos.forEach(repo => {
+                    const listItem = document.createElement('li');
+                    listItem.classList.add('repo');
+                    listItem.innerHTML = `
+                        <h2><a href="${repo.html_url}" target="_blank">${repo.name}</a></h2>
+                        <p>${repo.description ? repo.description.replace(/</g, "&lt;").replace(/>/g, "&gt;") : "No description available."}</p>
+                        <p>⭐ Stars: ${repo.stargazers_count} | 🍴 Forks: ${repo.forks_count}</p>
+                    `;
+                    repoList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error('Error fetching repositories:', error);
+                repoList.innerHTML = '<li>Unable to fetch repositories. Please try again later.</li>';
+            }
+        }
+
+        // Fetch and display repositories on page load
+        fetchRepositories();
+    </script>
+    <noscript>
+        <p>JavaScript is required to display the repositories. Please enable it in your browser settings.</p>
+    </noscript>
 </body>
 </html>
